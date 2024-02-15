@@ -1,0 +1,315 @@
+<script>
+const formatTime = timeInSeconds => {
+    const minutes = Math.floor(timeInSeconds / 60)
+    const seconds = timeInSeconds % 60
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+      2,
+      '0',
+    )}`
+  }
+
+  const startTimer = () => {
+    let seconds = 60 * 4
+    const timerPremio = document.querySelector('.timer-premio')
+
+    const interval = setInterval(() => {
+      if (seconds === 1) {
+        clearInterval(interval)
+      }
+
+      seconds = seconds - 1
+      timerPremio.innerHTML = formatTime(seconds)
+    }, 1000)
+  }
+
+    const value = 6400
+
+      const buttonSpinWheel =
+        document.querySelector('.buttonSpinWheel')
+      const wheel = document.querySelector('.wheel')
+      const boxCongratulations = document.querySelector('.box-congratulations')
+      const wheelSpinner =
+        document.querySelector('.wheel-spinner')
+    
+      buttonSpinWheel.addEventListener('click', () => {
+        wheel.style.transform = `rotate(${value}deg)`
+        buttonSpinWheel.style.cursor = 'not-allowed'
+    
+        setTimeout(function () {
+          buttonSpinWheel.style.display = 'none'
+          wheelSpinner.style.display = 'none'
+          boxCongratulations.style.display = 'block'
+          startTimer()
+        }, 11000)
+      })
+</script>
+
+<style>
+@keyframes expanding {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.box-congratulations {
+  margin: 1rem 3% 0 3%;
+  border: 2px solid #4b4b4b;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  display: none;
+}
+
+.box-congratulations h2 {
+  color: #00bada;
+  font-size: 2rem;
+  text-align: center;
+  background-color: #004c5a;
+  max-width: 260px;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+  border-radius: 1rem;
+  font-family: 'Roboto';
+}
+
+.box-congratulations > div > a {
+  text-decoration: none;
+}
+
+.box-congratulations > div > a button {
+  minn-: 72px;
+  background: rgb(0, 201, 198);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 201, 198, 0.9948354341736695) 22%,
+    rgba(0, 128, 129, 1) 54%,
+    rgba(0, 211, 255, 1) 100%
+  );
+  border: 3px solid #4b4b4b;
+  padding: 1rem;
+  border-radius: 2rem;
+  display: block;
+  margin: 1rem auto;
+  color: white;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.95);
+  animation: expanding 1s ease infinite;
+}
+
+.box-congratulations > p {
+  text-align: center;
+  margin-top: 1rem;
+  display: block;
+}
+
+.box-congratulations b {
+  position: relative;
+  color: red;
+  font-size: 1.2rem;
+}
+
+.box-congratulations b::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box-congratulations strong {
+  position: relative;
+  color: green;
+  font-size: 1.6rem;
+}
+
+.box-congratulations > h4 {
+  font-weight: 400;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.wheel-spinner {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.wheel-spinner > h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.7em;
+  background: none;
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(0, 201, 198, 0.9948354341736695) 22%,
+    rgba(0, 128, 129, 1) 54%,
+    rgba(0, 211, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  font-weight: 900;
+  font-family: Roboto
+}
+
+.wheel-spinner .content {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-spinner .content .spinBtn {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.1em;
+  border: 4px solid rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  user-select: none;
+}
+
+.wheel-spinner .content .spinBtn::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  width: 20px;
+  height: 30px;
+  background-color: white;
+  clip-path: polygon(50% 0%, 15% 100%, 85% 100%);
+}
+
+.wheel-spinner .wheel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #333, 0 0 0 15px #fff, 0 0 0 18px #111;
+  transition: transform 10s ease-in-out;
+}
+
+.number {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  transform-origin: bottom right;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.number span {
+  position: relative;
+  transform: rotate(-45deg);
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
+}
+
+.number span::before {
+  content: '';
+  position: absolute;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+.number-1 {
+  transform: rotate(calc(90deg * 1));
+}
+.number-2 {
+  transform: rotate(calc(90deg * 2));
+}
+.number-3 {
+  transform: rotate(calc(90deg * 3));
+}
+.number-4 {
+  transform: rotate(calc(90deg * 4));
+}
+
+.buttonSpinWheel {
+  display: block;
+  margin: 2.5rem auto 0 auto;
+  background: rgb(0, 9, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 9, 36, 1) 0%,
+    rgba(9, 71, 121, 1) 19%,
+    rgba(0, 198, 255, 1) 100%
+  );
+  color: white;
+  border: 0;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  height: 62px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  transition: linear-gradient 0.4s ease;
+  animation: expanding 1s ease infinite;
+  cursor: pointer;
+}
+
+.buttonSpinWheel:hover {
+  transition: linear-gradient 0.4s ease;
+  background: rgb(0, 36, 32);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 36, 32, 1) 0%,
+    rgba(9, 109, 121, 1) 19%,
+    rgba(0, 236, 255, 1) 100%
+  );
+}
+</style>
+
+<div class="box-congratulations">
+  <h2 style="font-family: Roboto">¡FELICIDADES!</h2>
+
+  <div>
+    <a style="cursor: pointer;" href="https://pay.hotmart.com/D89154878T?off=yd8lmdie&checkoutMode=10&bid=1703100193887&offDiscount=10%25+Exit+PopUp">
+      <button style="cursor: pointer;">HAZ CLIC AQUÍ PARA RECLAMAR TU DESCUENTO</button>
+    </a>
+  </div>
+
+  <p>
+    Valorado de <b>$37</b> a <strong>$33,30</strong>
+  </p>
+
+  <h4>
+    Este premio expira en <b class="timer-premio"></b>
+  </h4>
+</div>
+
+<div class="wheel-spinner" bis_skin_checked="1"><h1>GIRA LA RULETA PARA GANAR UN DESCUENTO!</h1><div class="content" bis_skin_checked="1"><div class="spinBtn" bis_skin_checked="1">Spin</div><div class="wheel" bis_skin_checked="1"><div class="number number-1" bis_skin_checked="1" style="background-color: rgb(53, 144, 255);"><span>10%</span></div><div class="number number-2" bis_skin_checked="1" style="background-color: rgb(37, 100, 178);"><span>3%</span></div><div class="number number-3" bis_skin_checked="1" style="background-color: rgb(53, 144, 255);"><span>7%</span></div><div class="number number-4" bis_skin_checked="1" style="background-color: rgb(37, 100, 178);"><span>0%</span></div></div></div></div><button class="buttonSpinWheel">Gira la ruleta</button>
