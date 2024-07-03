@@ -1,22 +1,3 @@
-## O que o código faz
-
-Esse código implementa uma roleta giratória em uma página da web. Quando o usuário clica no botão para girar a roleta, ela gira e, após um determinado tempo, exibe uma mensagem de parabéns com um desconto. Além disso, um cronômetro é iniciado para indicar o tempo restante para o usuário reivindicar o desconto.
-
-## Problemas no código e correções necessárias
-
-1. **Corrigir a ortografia e sintaxe de CSS**:
-   - Em `.box-congratulations > div > a button`, `minn-` está incorreto e deve ser corrigido para `min-width`.
-
-2. **Ajustes na lógica do JavaScript**:
-   - O `setInterval` não está interrompendo quando `seconds` chega a 0.
-   - O valor `seconds` deve ser decrementado antes de verificar se é igual a 1.
-   - Adicione a biblioteca `Roboto` no HTML.
-
-Aqui está o código corrigido:
-
-### Código corrigido:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -352,9 +333,3 @@ Aqui está o código corrigido:
 
 </body>
 </html>
-```
-
-### Alterações realizadas:
-- Corrigido o erro de sintaxe em `.box-congratulations > div > a button`, onde `minn-` foi alterado para `min-width`.
-- Ajustado o código do `setInterval` no JavaScript para garantir que ele pare quando `seconds` chegar a 0.
-- Adicionada a inclusão da fonte `Roboto` no HTML.
